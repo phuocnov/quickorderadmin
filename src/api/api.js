@@ -4,7 +4,7 @@ import { parse, stringify } from 'query-string/base'
 import storage from '../helper/storage'
 
 const api = axios.create({
-  baseURL: 'http://hanamthai.alwaysdata.net/clotheorder/',
+  baseURL: 'http://hanamthai.alwaysdata.net/',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',

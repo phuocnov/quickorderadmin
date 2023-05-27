@@ -79,12 +79,12 @@ export default function Product ({ navigation }) {
         </Flex>
         {productList.map((product, index) => {
           return <ProductItem
-            key={product.clotheid}
-            imgsrc={product.clotheimage}
-            title={product.clothename}
+            key={product.drinkid}
+            imgsrc={product.drinkimage}
+            title={product.drinkname}
             price={product.price}
             handleClick={() => {
-              navigation.navigate('product-detail', { clotheid: product.clotheid })
+              navigation.navigate('product-detail', { drinkid: product.drinkid })
             }}
           handleDelete={() => { deleteProduct(product.clotheid) }}
           />

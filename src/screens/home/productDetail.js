@@ -8,18 +8,18 @@ import product from '../../api/product'
 
 export default function ProductDetail ({ route, navigation }) {
   const { width } = useWindowDimensions()
-  const { clotheid } = route.params
+  const { drinkid } = route.params
   const [price] = useState(0)
   const [productData, setProductData] = useState({
-    clothe: {
+    drink: {
       categoryid: 1,
-      clotheid: 1,
-      clotheimage: 'https://xuongsiquanao.vn/wp-content/uploads/2018/02/1475035832336_73870.jpg',
-      clothename: 'BỘ THỂ THAO NAM ADIDAS',
+      drinkid: 1,
+      drinkimage: 'https://xuongsiquanao.vn/wp-content/uploads/2018/02/1475035832336_73870.jpg',
+      drinkname: 'BỘ THỂ THAO NAM ADIDAS',
       description: 'Chất liệu: Áo Cotton lụa / Quần Nỉ Cotton',
       status: 'Available'
     },
-    color: [],
+    topping: [],
     size: [
       {
         namesize: 'L',
@@ -42,7 +42,7 @@ export default function ProductDetail ({ route, navigation }) {
   getSupportedCurrencies()
 
   async function fetchProductDetail () {
-    product.getProduct(clotheid).then(res => {
+    product.getProduct(drinkid).then(res => {
       const data = res.data.data
       setProductData(data)
       console.log(data)
@@ -56,11 +56,11 @@ export default function ProductDetail ({ route, navigation }) {
   return <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f5f5f5' }}>
       <ScrollView style={{ flex: 1 }}>
         <Box style={style.headerContainer}>
-          <Image source={{ uri: productData.clothe.clotheimage }} style={{ width, height: 200 }} />
+          <Image source={{ uri: productData.drink.drinkimage }} style={{ width, height: 200 }} />
           <Box style={{ padding: 20 }}>
-            <Text style={style.name}>{productData.clothe.clothename}</Text>
+            <Text style={style.name}>{productData.drink.drinkname}</Text>
             <Text style={style.price}>{formatCurrency({ amount: price, code: 'VND' })[0]}</Text>
-            <Text style={style.description}>{productData.clothe.description}</Text>
+            <Text style={style.description}>{productData.drink.description}</Text>
           </Box>
         </Box>
         <Box style={{ width, backgroundColor: '#fff', marginTop: 10, padding: 10 }}>
@@ -78,16 +78,16 @@ export default function ProductDetail ({ route, navigation }) {
         </Box>
         <Box style={{ width, backgroundColor: '#fff', marginTop: 10, padding: 10 }}>
           <Text style={style.sectionTitle}>Màu sắc</Text>
-          {productData.color.map((color, index) => {
+          {productData.topping.map((tp, index) => {
             return <Flex key={index} direction="row" style={{ marginTop: 10 }}>
-              <Text style={{ fontFamily: 'Roboto_400Regular', fontSize: 16, marginLeft: 5 }}>{color.namecolor}</Text>
+              <Text style={{ fontFamily: 'Roboto_400Regular', fontSize: 16, marginLeft: 5 }}>{tp.nametopping}</Text>
               <Spacer />
-              <Text style={{ fontFamily: 'Roboto_400Regular', fontSize: 16 }}>{formatCurrency({ amount: color.price, code: 'VND' })[0]}</Text>
+              <Text style={{ fontFamily: 'Roboto_400Regular', fontSize: 16 }}>{formatCurrency({ amount: tp.price, code: 'VND' })[0]}</Text>
             </Flex>
           })}
         </Box>
         <Box style={{ height: 130 }} />
-        <Button title="Chỉnh sửa thông tin" onPress={() => { navigation.navigate('adjust-product', { clotheid }) }}></Button>
+        <Button title="Chỉnh sửa thông tin" onPress={() => { navigation.navigate('adjust-product', { drinkid }) }}></Button>
       </ScrollView>
       {/* Footer */}
       {/* <Box

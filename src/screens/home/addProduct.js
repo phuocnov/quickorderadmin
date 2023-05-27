@@ -44,12 +44,12 @@ export default function AddProduct ({ navigation }) {
 
   const formik = useFormik({
     initialValues: {
-      clothename: '',
-      clotheimage: '',
+      drinkname: '',
+      drinkimage: '',
       description: '',
       categoryid: 1,
       size: [],
-      color: []
+      topping: []
     },
     onSubmit: (values) => {
       console.log(values)
@@ -100,9 +100,9 @@ export default function AddProduct ({ navigation }) {
         }}
       />
       <Text>Tên sản phẩm</Text>
-      <TextInput onChangeText={(value) => { formik.setFieldValue('clothename', value) }} />
+      <TextInput onChangeText={(value) => { formik.setFieldValue('drinkname', value) }} />
       <Text>Ảnh sản phẩm</Text>
-      <TextInput onChangeText={(value) => { formik.setFieldValue('clotheimage', value) }} />
+      <TextInput onChangeText={(value) => { formik.setFieldValue('drink', value) }} />
       <Text>Mô tả sản phẩm</Text>
       <TextInput onChangeText={(value) => { formik.setFieldValue('description', value) }} />
       <Text>Kích thước sản phẩm</Text>

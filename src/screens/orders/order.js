@@ -4,9 +4,7 @@ import OrderItem from '../../components/order/orderItem'
 import admin from '../../api/admin'
 export default function OrderPage () {
   const { width, height } = useWindowDimensions()
-
   const [orders, setOrders] = useState([])
-
   async function fetchOrder () {
     const data = await admin.getCurrentOrder()
     setOrders(data.data.data)

@@ -6,9 +6,9 @@ const API_CONSTAINTS = {
     RESET_PASSWORD: '/resetPassword'
   },
   PRODUCTS: {
-    GET_PRODUCTS: '/allclothe',
-    DETAIL_PRODUCT: (id) => `/clothe/${id}`,
-    CATEGORIES: '/clothe/category'
+    GET_PRODUCTS: '/alldrink',
+    DETAIL_PRODUCT: (id) => `/drink/${id}`,
+    CATEGORIES: '/drink/category'
   },
   USER: {
     INFO: '/userInfo',
@@ -24,8 +24,8 @@ const API_CONSTAINTS = {
   ADMIN: {
     LOGIN: '/admin/login',
     CREATE_PRODUCT: '/admin/clothe/create',
-    ADJUST_CLOTHE: (id) => `/admin/clothe/${id}}`,
-    DELETE_CLOTHE: (id) => `/admin/clothe/${id}}`,
+    ADJUST_DRINK: (id) => `/admin/drink/${id}}`,
+    DELETE_DRINk: (id) => `/admin/drink/${id}}`,
     ORDER_HISTORY: '/admin/order/history',
     CURRENT_ORDER: '/admin/order/current',
     CANCEL_ORDER: (id) => `/admin/order/cancel/${id}`,

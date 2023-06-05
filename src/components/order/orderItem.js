@@ -7,7 +7,7 @@ export default function OrderItem ({ data, deliveryFunc, cancleFunc, disabled })
   const { width } = useWindowDimensions()
   return <Box style={{ width, backgroundColor: '#fff', marginTop: 15, padding: 10 }}>
     <Flex direction='row' style={{ alignItems: 'center', marginVertical: 10 }}>
-      <Text style={data.status === 'Completed' ? style.recivedLabel : style.failedLabel}>{data.status === 'Preparing' ? 'Đang chuẩn bị' : 'Đang giao hàng'}</Text>
+      <Text style={data.status === 'Preparing' ? style.recivedLabel : style.failedLabel}>{data.status === 'Preparing' ? 'Đang chuẩn bị' : 'Đang giao hàng'}</Text>
       <Spacer />
       <Text style={style.date}>{data.orderdate}</Text>
     </Flex>

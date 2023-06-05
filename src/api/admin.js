@@ -8,8 +8,8 @@ export default {
   createProduct: (params) => {
     return api.post(API_CONSTAINTS.ADMIN.CREATE_PRODUCT, params)
   },
-  adjustProduct: (params) => {
-    return api.post(API_CONSTAINTS.ADMIN.ADJUST_CLOTHE, params)
+  adjustProduct: (id, params) => {
+    return api.put(API_CONSTAINTS.ADMIN.ADJUST_DRINK(id), params)
   },
   getHistory: () => {
     return api.get(API_CONSTAINTS.ADMIN.ORDER_HISTORY)

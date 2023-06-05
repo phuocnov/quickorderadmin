@@ -6,6 +6,7 @@ import store from '../../redux/store'
 import { useFormik } from 'formik'
 import SelectDropdown from 'react-native-select-dropdown'
 import ProductSizeInput from '../../components/productSizeInput'
+import admin from '../../api/admin'
 
 export default function AdjustProduct ({ route, navigation }) {
   const { productData } = route.params
@@ -55,17 +56,19 @@ export default function AdjustProduct ({ route, navigation }) {
   const formik = useFormik({
     initialValues: {
       drink: {
-        categoryid: '',
-        description: '',
-        drinkid: 0,
-        drinkimage: '',
-        drinkname: ''
+        categoryid: productData.drink.categoryid,
+        description: productData.drink.description,
+        drinkid: productData.drink.drinkid,
+        drinkimage: productData.drink.drinkimage,
+        drinkname: productData.drink.drinkname
       },
       size: [],
-      color: []
+      topping: []
     },
     onSubmit: (values) => {
       console.log(values)
+      admin.adjustProduct(productData.drink.drinkid, values)
+      navigation.navigate('Product')
     }
   })
 
@@ -89,79 +92,84 @@ export default function AdjustProduct ({ route, navigation }) {
     setSizes(temp)
     console.log(sizes)
   }
-
   return (
     <View style={{ backgroundColor: '#ddd', flex: 1 }}>
-        <ScrollView>
-          <Text>Loại sản phẩm</Text>
-          <SelectDropdown
-            data={categoriesDisplay}
-            onSelect={(selectedItem) => {
-              const { categoryid } = categories.find((cate) => {
-                return cate.categoryname === selectedItem
-              })
-              formik.setFieldValue('categoryid', categoryid)
-              console.log(formik.values)
-            }}
-          />
-          <Text>Tên sản phẩm</Text>
-          <TextInput
-            defaultValue={productData.drink.drinkname}
-            onChange={(value) => {
-              const tempForm = productData.drink
-              tempForm.drinkname = value
-              formik.setFieldValue('drink', productData.drink.drinkid)
-              console.log(formik.values)
-            }}
-          />
-          <Text>Ảnh sản phẩm</Text>
-          <TextInput
-            defaultValue={productData.drink.drinkimage}
-            onChange={(value) => {
-              formik.setFieldValue('drinkimage', value)
-            }}
-          />
-          <Text>Mô tả sản phẩm</Text>
-          <TextInput
-            defaultValue={productData.drink.description}
-            onChange={(value) => {
-              formik.setFieldValue('description', value)
-            }}
-          />
-          <Text>Kích thước sản phẩm</Text>
-          {productData.size.map((size, index) => {
-            return (
-              <ProductSizeInput
-                key={index}
-                onSelect={(checked) => {
-                  addFormSize(checked, size)
-                }}
-                sizeName={size.namesize}
-                defaultPrice={size.price}
-                onInputChange={(value) => setFormPrice(value, index)}
-              />
-            )
-          })}
-          <Text>Topping</Text>
-          {productData.topping.map((topping, index) => {
-            return (
-              <ProductSizeInput
-                key={index}
-                onSelect={(checked) => {
-                  addFormSize(checked, topping)
-                }}
-                sizeName={topping.nametopping}
-                onInputChange={(value) => setFormPrice(value, index)}
-              />
-            )
-          })}
-          <Button
-            title="Lưu"
-            onPress={() => {
-              formik.submitForm()
-            }}
-          ></Button>
-        </ScrollView>
+      <ScrollView>
+        <Text>Loại sản phẩm</Text>
+        <SelectDropdown
+          data={categoriesDisplay}
+          onSelect={(selectedItem) => {
+            const { categoryid } = categories.find((cate) => {
+              return cate.categoryname === selectedItem
+            })
+            formik.setFieldValue('categoryid', categoryid)
+            console.log(formik.values)
+          }}
+        />
+        <Text>Tên sản phẩm</Text>
+        <TextInput
+          defaultValue={productData.drink.drinkname}
+          onChangeText={(value) => {
+            const tempForm = productData.drink
+            tempForm.drinkname = value
+            formik.setFieldValue('drink', tempForm)
+            console.log(formik.values)
+          }}
+        />
+        <Text>Ảnh sản phẩm</Text>
+        <TextInput
+          defaultValue={productData.drink.drinkimage}
+          onChangeText={(value) => {
+            const tempForm = productData.drink
+            tempForm.drinkname = value
+            formik.setFieldValue('drink', tempForm)
+            console.log(formik.values)
+          }}
+        />
+        <Text>Mô tả sản phẩm</Text>
+        <TextInput
+          defaultValue={productData.drink.description}
+          onChange={(value) => {
+            const tempForm = productData.drink
+            tempForm.drinkname = value
+            formik.setFieldValue('drink', tempForm)
+            console.log(formik.values)
+          }}
+        />
+        <Text>Kích thước sản phẩm</Text>
+        {productData.size.map((size, index) => {
+          return (
+            <ProductSizeInput
+              key={index}
+              onSelect={(checked) => {
+                addFormSize(checked, size)
+              }}
+              sizeName={size.namesize}
+              defaultPrice={size.price}
+              onInputChange={(value) => setFormPrice(value, index)}
+            />
+          )
+        })}
+        <Text>Topping</Text>
+        {productData.topping.map((topping, index) => {
+          return (
+            <ProductSizeInput
+              key={index}
+              onSelect={(checked) => {
+                addFormSize(checked, topping)
+              }}
+              sizeName={topping.nametopping}
+              onInputChange={(value) => setFormPrice(value, index)}
+            />
+          )
+        })}
+        <Button
+          title="Lưu"
+          onPress={() => {
+            formik.submitForm()
+          }}
+        ></Button>
+      </ScrollView>
     </View>
   )
 }

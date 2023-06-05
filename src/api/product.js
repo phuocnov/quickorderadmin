@@ -9,5 +9,8 @@ export default {
   },
   getCategories: () => {
     return api.get(API_CONSTAINTS.PRODUCTS.CATEGORIES)
+  },
+  adjustProduct: (id) => {
+    return api.put(API_CONSTAINTS.ADMIN.ADJUST_DRINK(id))
   }
 }

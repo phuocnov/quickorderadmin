@@ -4,7 +4,8 @@ const slice = createSlice({
   name: 'drink-items',
   initialState: {
     drinks: [],
-    drinkStorage: []
+    drinkStorage: [],
+    fetchRequests: false
   },
   reducers: {
     search: (state, actions) => {
@@ -29,6 +30,9 @@ const slice = createSlice({
       if (action.payload === '') {
         state.drinks = state.drinkStorage
       } else state.drinks = state.drinks.filter(drink => drink.drinkname.search(action.payload) !== -1)
+    },
+    setFetchRequests: (state, action) => {
+      state.fetchRequests = action.payload
     }
   }
 })

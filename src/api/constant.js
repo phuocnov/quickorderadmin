@@ -23,7 +23,7 @@ const API_CONSTAINTS = {
   },
   ADMIN: {
     LOGIN: '/admin/login',
-    CREATE_PRODUCT: '/admin/clothe/create',
+    CREATE_PRODUCT: '/admin/drink/create',
     ADJUST_DRINK: (id) => `/admin/drink/${id}}`,
     DELETE_DRINk: (id) => `/admin/drink/${id}}`,
     ORDER_HISTORY: '/admin/order/history',

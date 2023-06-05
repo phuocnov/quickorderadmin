@@ -53,9 +53,8 @@ export default function AddProduct ({ navigation }) {
     },
     onSubmit: (values) => {
       console.log(values)
-      admin.createProduct(values).then(res => {
-        console.log(res.data)
-      })
+      admin.createProduct(values)
+      navigation.navigate('products')
     }
   })
 
@@ -78,16 +77,6 @@ export default function AddProduct ({ navigation }) {
     setSizes(temp)
   }
 
-  // function addTopping () {
-  //   const temp = toppings
-  //   const topping = {
-  //     nametopping: 'topping name',
-  //     price: 0
-  //   }
-  //   setToppings(temp.push(topping))
-  //   console.log(toppings)
-  // }
-
   return <View style={{ backgroundColor: '#ddd', flex: 1 }}>
     <ScrollView>
       <Text>Loại sản phẩm</Text>
@@ -102,21 +91,13 @@ export default function AddProduct ({ navigation }) {
       <Text>Tên sản phẩm</Text>
       <TextInput onChangeText={(value) => { formik.setFieldValue('drinkname', value) }} />
       <Text>Ảnh sản phẩm</Text>
-      <TextInput onChangeText={(value) => { formik.setFieldValue('drink', value) }} />
+      <TextInput onChangeText={(value) => { formik.setFieldValue('drinkimage', value) }} />
       <Text>Mô tả sản phẩm</Text>
       <TextInput onChangeText={(value) => { formik.setFieldValue('description', value) }} />
       <Text>Kích thước sản phẩm</Text>
       {sizes.map((size, index) => {
         return <ProductSizeInput key={index} onSelect={(checked) => { addFormSize(checked, size) }} sizeName={size.namesize} onInputChange={(value) => setFormPrice(value, index)}/>
       })}
-      {/* <Text>Topping</Text>
-      {toppings.map((topping, index) => {
-        return <ProductToppingInput
-          key={index}
-          onSelect={(checked) => { addFormSize(checked) }}
-          setName={(value) => setFormPrice(value, index)} />
-      })} */}
-      {/* <Button title="Thêm topping" onPress={() => { addTopping() }}></Button> */}
       <Button title="Lưu" onPress={() => { formik.submitForm() }}></Button>
     </ScrollView>
   </View>

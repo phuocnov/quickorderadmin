@@ -48,7 +48,7 @@ export default function Product ({ navigation }) {
   }, [cateSelected, productList])
 
   async function deleteProduct (id) {
-    const { data } = await admin.deleteProduct(id)
+    const data = await admin.deleteProduct(id)
     console.log(data)
   }
   return (

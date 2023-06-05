@@ -87,7 +87,7 @@ export default function ProductDetail ({ route, navigation }) {
           })}
         </Box>
         <Box style={{ height: 130 }} />
-        <Button title="Chỉnh sửa thông tin" onPress={() => { navigation.navigate('adjust-product', { drinkid }) }}></Button>
+        <Button title="Chỉnh sửa thông tin" onPress={() => { navigation.navigate('adjust-product', { productData }) }}></Button>
       </ScrollView>
       {/* Footer */}
       {/* <Box
